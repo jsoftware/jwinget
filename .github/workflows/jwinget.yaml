@@ -1,0 +1,34 @@
+name: Update Winget
+
+on: workflow_dispatch
+
+jobs:
+  winget:
+    name: Update Winget
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Git Repository
+        uses: actions/checkout@v3
+        
+      - name: Get Latest Version
+        shell: pwsh
+        run: |
+         script\get_version.ps1
+         
+      - name: Install winget
+        uses: Cyberboss/install-winget@v1
+        
+      - name: Install wingetcreate
+        run: winget install wingetcreate --disable-interactivity --accept-source-agreements
+
+      - name: Update Winget
+        shell: pwsh
+        run: |
+         $URL = ("https://www.jsoftware.com/download/$env:Folder/install/j" + $env:Version + "_win64.exe")
+         wingetcreate.exe update $env:ID -u $URL -v $env:Version -t $(GITHUB_PAT)
+         
+      - name: Update Winget (Slim)
+        shell: pwsh
+        run: |
+         $URL = ("https://www.jsoftware.com/download/$env:Folder/install/j" + $env:Version + "_win64_slim.exe")
+         wingetcreate.exe update ($env:ID + ".slim") -u $URL -v $env:Version -t $(GITHUB_PAT)
