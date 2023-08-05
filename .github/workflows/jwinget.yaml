@@ -25,7 +25,7 @@ jobs:
         shell: pwsh
         run: |
          $URL = ("https://www.jsoftware.com/download/$env:Folder/install/j" + $env:Version + "_win64.exe")
-         wingetcreate.exe update $env:ID -u $URL -v $env:Version -t ${{ secrets.JWINGET_TOKEN }}
+         wingetcreate.exe update $env:ID -u $URL -s -v $env:Version -t ${{ secrets.JWINGET_TOKEN }}
 
   wingetslim:
     name: Update Winget Slim
@@ -49,4 +49,4 @@ jobs:
         shell: pwsh
         run: |
          $URL = ("https://www.jsoftware.com/download/$env:Folder/install/j" + $env:Version + "_win64_slim.exe")
-         wingetcreate.exe update ($env:ID + ".slim") -u $URL -v $env:Version -t ${{ secrets.JWINGET_TOKEN }}
+         wingetcreate.exe update ($env:ID + ".slim") -u $URL -s -v $env:Version -t ${{ secrets.JWINGET_TOKEN }}

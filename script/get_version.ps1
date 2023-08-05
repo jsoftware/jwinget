@@ -14,3 +14,5 @@ $ID = "Jsoftware.J." + $num
 echo "Version=$Version" >> $env:GITHUB_ENV
 echo "Folder=$Folder" >> $env:GITHUB_ENV
 echo "ID=$ID" >> $env:GITHUB_ENV
+
+echo ($ID + ".slim -u " + $URL + " -s -v " + $Version)
