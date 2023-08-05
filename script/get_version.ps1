@@ -15,4 +15,5 @@ echo "Version=$Version" >> $env:GITHUB_ENV
 echo "Folder=$Folder" >> $env:GITHUB_ENV
 echo "ID=$ID" >> $env:GITHUB_ENV
 
-echo ($ID + ".slim -u " + $URL + " -s -v " + $Version)
+$EXE = ("https://www.jsoftware.com/download/$env:Folder/install/j" + $Version + "_win64_slim.exe")
+echo ($ID + ".slim -u " + $EXE + " -s -v " + $Version)
